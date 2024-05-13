@@ -1,0 +1,12 @@
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container">
+        <span>
+            <a href={% url "home:index" %} class="navbar-brand text-white">Home</a>
+            <a href={% url "shop:index" %} class="navbar-brand">Curses Shop</a>
+        </span>
+        <span>
+            <a href="/admin/" class="navbar-brand" target="_blank">Admin</a>
+            <a href="/api/v1/" class="navbar-brand" target="_blank">Api</a>
+        </span>
+    </div>
+</nav>
