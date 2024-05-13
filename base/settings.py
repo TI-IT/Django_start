@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'shop.apps.ShopConfig',
     'home.apps.HomeConfig',
     'api.apps.ApiConfig',
+    'tastypie',
 ]
 
 MIDDLEWARE = [
