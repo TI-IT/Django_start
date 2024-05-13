@@ -18,22 +18,25 @@ class CourseResource(ModelResource):
         resource_name = 'courses'
         # Разрешаем только меьод get,post,delete
         allowed_methods = ['get', 'post', 'delete']
+
+        # Поля для исключения в ресурсе для клиента
+        excludes = ['reviews_qty', 'created_at']
+
         authentication = CustomAutentication()
         authorization = Authorization()
 
-    """
-        Дегидратирует переданный объект `bundle`, добавляя поле `category_id` в его словарь `data`.
-        Аргументы:
-            bundle (tastypie.bundle.Bundle): Объект, который нужно дегидратировать.
-        Возвращает:
-            tastypie.bundle.Bundle: Дегидратированный объект.
-    """
-
+# hydrate-обрабатываем данные от клиента к серверу
     def hydrate(self, bundle):
         bundle.obj.category_id = bundle.data['category_id']
         return bundle
 
-    # Добавляем поле `category_id` в объект
+# dehydrate-обрабатываем данные от сервера к клиенту
+    # Добавляем поле `category_id`, `category` в объект
     def dehydrate(self, bundle):
-        bundle.data['category_id'] = bundle.obj.category
+        bundle.data['category_id'] = bundle.obj.category_id
+        bundle.data['category'] = bundle.obj.category
         return bundle
+
+    # Вносим изменения в Заголовок
+    def dehydrate_title(self, bundle):
+        return bundle.data['title'].upper()
