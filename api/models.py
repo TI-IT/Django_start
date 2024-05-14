@@ -19,6 +19,7 @@ class CourseResource(ModelResource):
         # Разрешаем только меьод get,post,delete
         allowed_methods = ['get', 'post', 'delete']
 
+        # Филтер
         # Поля для исключения в ресурсе для клиента
         excludes = ['reviews_qty', 'created_at']
 

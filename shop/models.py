@@ -5,7 +5,8 @@ from django.utils import timezone
 
 
 class Category(models.Model):
-    title = models.CharField(max_length=255)
+    title = models.CharField(
+        max_length=255, verbose_name='Наименование Категории', unique=True)
     created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
